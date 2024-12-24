@@ -161,7 +161,7 @@ func AuthTicketFromURL(req *http.Request) *AuthTicket {
 func (t *AuthTicket) UserID() int64 {
 	s, exists := t.parameters["id"]
 	if exists {
-		val, err := strconv.ParseInt(s, 10, 0)
+		val, err := strconv.ParseInt(s, 10, 64)
 		if err != nil {
 			panic(err)
 		}
@@ -183,7 +183,7 @@ func (t *AuthTicket) UserName() string {
 func (t *AuthTicket) AuthDate() time.Time {
 	s, exists := t.parameters["auth_date"]
 	if exists {
-		val, err := strconv.ParseInt(s, 10, 0)
+		val, err := strconv.ParseInt(s, 10, 64)
 		if err == nil {
 			return time.Unix(val, 0)
 		}
@@ -294,7 +294,7 @@ func NewAllowedUsers(raw string) *AllowedUsers {
 	for _, str := range fields {
 		str = strings.TrimSpace(str)
 
-		i, err := strconv.ParseInt(str, 10, 0)
+		i, err := strconv.ParseInt(str, 10, 64)
 		if err == nil {
 			users.UserIDs[i] = struct{}{}
 			continue
