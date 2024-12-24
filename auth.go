@@ -259,11 +259,6 @@ func (t *AuthTicket) areParametersWellFormed() bool {
 		return false
 	}
 
-	_, exists = t.parameters["username"]
-	if !exists {
-		return false
-	}
-
 	_, exists = t.parameters["auth_date"]
 	if !exists {
 		return false
