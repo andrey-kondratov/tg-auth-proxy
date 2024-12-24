@@ -162,11 +162,12 @@ func (t *AuthTicket) UserID() int64 {
 	s, exists := t.parameters["id"]
 	if exists {
 		val, err := strconv.ParseInt(s, 10, 0)
-		if err == nil {
-			return val
+		if err != nil {
+			panic(err)
 		}
-	}
 
+		return val
+	}
 	return 0
 }
 
