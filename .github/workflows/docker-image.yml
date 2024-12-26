@@ -17,9 +17,8 @@ jobs:
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v3
       with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        username: andreikondratov
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v3
     - name: Set up Docker Buildx
@@ -29,4 +28,4 @@ jobs:
       uses: docker/build-push-action@v6.10.0
       with:
         push: true
-        tags: ghcr.io/andrey-kondratov/tg-auth-proxy:latest
+        tags: andreikondratov/tg-auth-proxy:latest
